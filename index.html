@@ -27,8 +27,7 @@
         }
 
         .card {
-            max-width: 400px;
-            margin: auto;
+            max-width: 100%;
         }
 
         .completed {
@@ -50,40 +49,24 @@
             margin-top: 30px;
             font-size: 1.1rem;
         }
+
+        .section-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .section-container .card {
+            flex: 1;
+        }
     </style>
 </head>
 
 <body id="page-top">
-    <!-- Masthead -->
-    <header class="masthead bg-primary text-white text-left">
-        <div class="container d-flex align-items-left flex-column">
-            <!-- Masthead Avatar Image -->
-            <img class="masthead-avatar mb-4 rounded-circle shadow" src="bbb.png" alt="Bhanu Bhakta Bhattarai" width="100" height="100" />
-            <!-- Masthead Heading -->
-            <h1 class="masthead-heading text-uppercase mb-3">भानुभक्त भट्टराई</h1>
-            <!-- Masthead Subheading -->
-            <p class="masthead-subheading font-weight-light mb-4">सहायक प्रशासकीय अधिकृत</p>
-            <p class="masthead-subheading font-weight-light mb-5">प्रदेश लोक सेवा आयोग धनगढी कैलाली</p>
-
-
-            <!-- Social Media Links -->
-            <nav>
-                <a href="http://youtube.com/@evanbhattarai9320" class="btn btn-outline-light btn-social mx-1" aria-label="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="http://facebook.com/bhanu456157" class="btn btn-outline-light btn-social mx-1" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="http://github.com/bbbhattarai" class="btn btn-outline-light btn-social mx-1" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- ToDo List Section -->
+    <!-- Combined Sections: ToDo List and Contemporary Issues -->
     <section class="py-5">
-        <div class="container">
+        <div class="container section-container">
+            <!-- ToDo List Section -->
             <div class="card shadow-lg">
                 <div class="card-header bg-success text-white text-center">
                     <h2>ToDo List</h2>
@@ -100,12 +83,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Contemporary Issues Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
+            <!-- Contemporary Issues Section -->
             <div class="card shadow-lg">
                 <div class="card-header bg-info text-white text-center">
                     <h2>समसामयिक ज्ञान</h2>
@@ -117,12 +96,32 @@
                         <li class="list-group-item"> ३. सिद्धार्थ राजमार्ग अन्तर्गत बुटवल-तानसेन सडकखण्डमा पर्ने सिद्धबाबा सुरुङको ब्रेक थ्रु कहिले भएको हो? * वि.सं. २०५१ माघ ११</li>
                         <li class="list-group-item"> ४. राष्ट्रिय योजना आयोगले मुलुकको समग्र विकासका लागि कति वटा विषयगत क्षेत्र पहिचान गर्दै दिगो विकासको लक्ष्य पूरा गर्न सबैलाई सँगै डोर्याउने योजनासहित अघि बढेको छ? * १३</li>
                         <li class="list-group-item"> ५. तावा भन्ज्याङ-टेम्के-मैयुङ-साल्पा-सिलिचुङ पदमार्गलाई के नामले चिनिन्छ? * मुन्दुम ट्रेलमार्ग</li>
-                        
                     </ul>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Personal Details Section -->
+    <header class="masthead bg-primary text-white text-center py-5">
+        <div class="container d-flex align-items-center flex-column">
+            <img class="masthead-avatar mb-4 rounded-circle shadow" src="bbb.png" alt="Bhanu Bhakta Bhattarai" width="200" height="200" />
+            <h1 class="masthead-heading text-uppercase mb-3">भानुभक्त भट्टराई</h1>
+            <p class="masthead-subheading font-weight-light mb-2">सहायक प्रशासकीय अधिकृत</p>
+            <p class="masthead-subheading font-weight-light mb-4">प्रदेश लोक सेवा आयोग धनगढी कैलाली</p>
+            <nav>
+                <a href="http://youtube.com/@evanbhattarai9320" class="btn btn-outline-light btn-social mx-1" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="http://facebook.com/bhanu456157" class="btn btn-outline-light btn-social mx-1" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="http://github.com/bbbhattarai" class="btn btn-outline-light btn-social mx-1" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
 
     <!-- Copyright Section -->
     <footer class="bg-dark text-white py-3">
