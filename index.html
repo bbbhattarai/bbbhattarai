@@ -45,6 +45,11 @@
         .list-group-item .btn-group {
             gap: 5px;
         }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 
@@ -87,6 +92,10 @@
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
                     <ul id="taskList" class="list-group"></ul>
+                    <div id="taskMessage" class="text-center message"></div>
+                    <div class="text-center mt-3">
+                        <button id="clearTasks" class="btn btn-danger">Clear All Tasks</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,14 +110,11 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
-                        <li class="list-group-item"> १. लैगिक हिंसामा परेका महिला र किशोरीलाई सुरक्षित रूपमा राख्न 'मगला सहाना पुनर्स्थापना केन्द्रको स्थापना कहाँ गरिने भएको छ?
-* सूर्यविनायक भक्तपुर</li>
-                        <li class="list-group-item"> २. 'सहायता वित्त पोषण' अन्तर्गत 'अनुदान' र 'सहुलियत ऋण' को विकल्प खुला राखी फ्रेमवर्क फर बेल्ट एन्ड रोडको अपरेसन' मा नेपाल र चीनबिच कहिले हस्ताक्षर भएको हो?
-* विसं २०५१ मङ्सिर १९ (सन् २०२४ डिसेम्बर ४ )</li>
-                        <li class="list-group-item"> ३. सिद्धार्थ राजमार्ग अन्तर्गत बुटवल-तानसेन सडकखण्डमा पर्ने सिद्धबाबा सुरुङको ब्रेक ब्रु कहिले भएको हो? * वि.सं. २०५१ माघ ११</li>
-                        <li class="list-group-item"> ४. राष्ट्रिय योजना आयोगले मुलुकको समग्र विकासका लागि कति वटा विषयगत क्षेत्र पहिचान गर्दै दिगो विकासको लक्ष्य पूरा गर्न सबैलाई सँगै डोर्याउने योजनासहित अधि बढेको छ? * १३</li>
-                        <li class="list-group-item"> ५. तावा भन्ज्याङ-टेम्के-मैयुङ-साल्पा-सिलिचुङ पदमार्गलाई के नामले चिनिन्छ?
-* मुन्दुम ट्रेलमार्ग</li>
+                        <li class="list-group-item"> १. लैगिक हिंसामा परेका महिला र किशोरीलाई सुरक्षित रूपमा राख्न 'मगला सहाना पुनर्स्थापना केन्द्र' को स्थापना कहाँ गरिने भएको छ? * सूर्यविनायक भक्तपुर</li>
+                        <li class="list-group-item"> २. 'सहायता वित्त पोषण' अन्तर्गत 'अनुदान' र 'सहुलियत ऋण' को विकल्प खुला राखी 'फ्रेमवर्क फर बेल्ट एन्ड रोडको अपरेसन' मा नेपाल र चीनबिच कहिले हस्ताक्षर भएको हो? * विसं २०५१ मङ्सिर १९ (सन् २०२४ डिसेम्बर ४)</li>
+                        <li class="list-group-item"> ३. सिद्धार्थ राजमार्ग अन्तर्गत बुटवल-तानसेन सडकखण्डमा पर्ने सिद्धबाबा सुरुङको ब्रेक थ्रु कहिले भएको हो? * वि.सं. २०५१ माघ ११</li>
+                        <li class="list-group-item"> ४. राष्ट्रिय योजना आयोगले मुलुकको समग्र विकासका लागि कति वटा विषयगत क्षेत्र पहिचान गर्दै दिगो विकासको लक्ष्य पूरा गर्न सबैलाई सँगै डोर्याउने योजनासहित अघि बढेको छ? * १३</li>
+                        <li class="list-group-item"> ५. तावा भन्ज्याङ-टेम्के-मैयुङ-साल्पा-सिलिचुङ पदमार्गलाई के नामले चिनिन्छ? * मुन्दुम ट्रेलमार्ग</li>
                     </ul>
                 </div>
             </div>
@@ -130,6 +136,8 @@
             const taskForm = document.getElementById('taskForm');
             const taskInput = document.getElementById('taskInput');
             const taskList = document.getElementById('taskList');
+            const taskMessage = document.getElementById('taskMessage');
+            const clearTasksButton = document.getElementById('clearTasks');
 
             let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
@@ -151,6 +159,8 @@
                     `;
                     taskList.appendChild(taskItem);
                 });
+
+                taskMessage.textContent = tasks.length ? `You have ${tasks.length} pending task(s).` : 'No tasks pending!';
             }
 
             taskForm.addEventListener('submit', (e) => {
@@ -159,6 +169,14 @@
                 if (newTask !== '') {
                     tasks.push({ text: newTask, completed: false });
                     taskInput.value = '';
+                    saveTasks();
+                    renderTasks();
+                }
+            });
+
+            clearTasksButton.addEventListener('click', () => {
+                if (confirm('Are you sure you want to clear all tasks?')) {
+                    tasks = [];
                     saveTasks();
                     renderTasks();
                 }
